@@ -27,3 +27,10 @@ Podfile.lock
 /tensorflow/contrib/lite/examples/ios/simple/data/*.txt
 /tensorflow/contrib/lite/examples/ios/simple/data/*.tflite
 xcuserdata/**
+tensorflow/examples/android/android.iml
+tensorflow/examples/android/local.properties
+tensorflow/examples/android/gradlew.bat
+tensorflow/examples/android/gradlew
+tensorflow/examples/android/.gradle/
+tensorflow/examples/android/.idea/
+tensorflow/examples/android/gradleBuild/

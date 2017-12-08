@@ -40,7 +40,7 @@ allprojects {
 }
 
 // set to 'bazel', 'cmake', 'makefile', 'none'
-def nativeBuildSystem = 'bazel'
+def nativeBuildSystem = 'none'
 
 // Controls output directory in APK and CPU type for Bazel builds.
 // NOTE: Does not affect the Makefile build target API (yet), which currently
@@ -80,7 +80,7 @@ android {
     if (nativeBuildSystem == 'cmake') {
         defaultConfig {
             applicationId = 'org.tensorflow.demo'
-            minSdkVersion 21
+            minSdkVersion 16
             targetSdkVersion 23
             ndk {
                 abiFilters "${cpuType}"

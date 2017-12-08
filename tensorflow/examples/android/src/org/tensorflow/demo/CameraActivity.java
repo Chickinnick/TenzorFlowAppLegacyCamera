@@ -314,62 +314,11 @@ public abstract class CameraActivity extends Activity
     return requiredLevel <= deviceLevel;
   }
 
-  private String chooseCamera() {
-    final CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-    try {
-      for (final String cameraId : manager.getCameraIdList()) {
-        final CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
-
-        // We don't use a front facing camera in this sample.
-        final Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
-        if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
-          continue;
-        }
-
-        final StreamConfigurationMap map =
-            characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-
-        if (map == null) {
-          continue;
-        }
-
-        useCamera2API = isHardwareLevelSupported(characteristics,
-            CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL);
-        LOGGER.i("Camera API lv2?: %s", useCamera2API);
-        return cameraId;
-      }
-    } catch (CameraAccessException e) {
-      LOGGER.e(e, "Not allowed to access camera");
-    }
-
-    return null;
-  }
 
   protected void setFragment() {
-    String cameraId = chooseCamera();
 
-    Fragment fragment;
-    if (useCamera2API) {
-      CameraConnectionFragment camera2Fragment =
-          CameraConnectionFragment.newInstance(
-              new CameraConnectionFragment.ConnectionCallback() {
-                @Override
-                public void onPreviewSizeChosen(final Size size, final int rotation) {
-                  previewHeight = size.getHeight();
-                  previewWidth = size.getWidth();
-                  CameraActivity.this.onPreviewSizeChosen(size, rotation);
-                }
-              },
-              this,
-              getLayoutId(),
-              getDesiredPreviewFrameSize());
-
-      camera2Fragment.setCamera(cameraId);
-      fragment = camera2Fragment;
-    } else {
-      fragment =
+    Fragment fragment =
           new LegacyCameraConnectionFragment(this, getLayoutId(), getDesiredPreviewFrameSize());
-    }
 
     getFragmentManager()
         .beginTransaction()
