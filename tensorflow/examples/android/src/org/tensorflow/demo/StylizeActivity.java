@@ -31,7 +31,6 @@ import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.MotionEvent;
