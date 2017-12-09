@@ -34,3 +34,4 @@ tensorflow/examples/android/gradlew
 tensorflow/examples/android/.gradle/
 tensorflow/examples/android/.idea/
 tensorflow/examples/android/gradleBuild/
+tensorflow/examples/android/.externalNativeBuild/
